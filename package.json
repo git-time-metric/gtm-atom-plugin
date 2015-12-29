@@ -1,0 +1,16 @@
+{
+  "name": "Influxtime",
+  "main": "./lib/influxtime",
+  "version": "0.1.0",
+  "description": "Sends information to Influxtime for time categorization",
+  "keywords": [
+  ],
+  "activationCommands": {},
+  "repository": "https://bitbucket.org/edgegio/influxtime-atom-plugin",
+  "license": "MIT",
+  "engines": {
+    "atom": ">=1.3.2 <2.0.0"
+  },
+  "dependencies": {
+  }
+}
