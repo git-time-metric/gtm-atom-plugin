@@ -44,7 +44,7 @@ module.exports = Influxtime =
 
   logEvent: (filename) ->
     if filename != ""
-      command = "influxmetric"
+      command = "/usr/local/bin/influxmetric"
       args = ["record", "file", filename, ">> ~/.influxmetric/influxtime-atom.log"]
       stdout = (output) -> console.log(output)
       process = new BufferedProcess({command, args, stdout})
