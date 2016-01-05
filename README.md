@@ -19,6 +19,8 @@ and running on your computer. For those that are shell-savvy, you must have
 the "influxtime" executable installed and available on the system path
 or this data will not be synchronized to your Influxtime account.
 
+At the time of publish, Influxtime can be run only on a Mac OSX System.
+
 # Copyright
 
 &copy; 2016 EdgeG.IO - All Rights Reserved.
