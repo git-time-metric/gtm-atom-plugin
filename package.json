@@ -1,16 +1,25 @@
 {
-  "name": "Influxtime",
+  "name": "edgeg.io-atom-time-plugin",
+  "author": {
+    "name": "Brandon Grady"
+  },
   "main": "./lib/influxtime",
   "version": "0.1.1",
-  "description": "Sends information to Influxtime for time categorization",
+  "description": "Collects time metric information for files worked on in GIT repositories.",
   "keywords": [
   ],
   "activationCommands": {},
-  "repository": "https://bitbucket.org/edgegio/influxtime-atom-plugin",
+  "repository": "https://bitbucket.org/edgegio/edgeg.io-atom-time-plugin",
+  "repository": {
+    "type": "git",
+    "url": "git+https://bitbucket.org/edgegio/edgeg.io-atom-time-plugin"
+  },
   "license": "MIT",
   "engines": {
-    "atom": ">=1.3.2 <2.0.0"
+    "atom": "&gte;1.3.2 &lt;2.0.0"
   },
+  "readmeFilename": "README.md",
+  "_id": "edgeg.io-atom-time-plugin@0.1.1",
   "dependencies": {
   }
 }
