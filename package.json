@@ -4,7 +4,7 @@
     "name": "Brandon Grady"
   },
   "main": "./lib/influxtime",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Collects time metric information for files worked on in GIT repositories.",
   "keywords": [
   ],
@@ -26,7 +26,7 @@
     }
   },
   "readmeFilename": "README.md",
-  "_id": "edgeg.io-atom-time-plugin@0.1.1",
+  "_id": "edgeg.io-atom-time-plugin@0.1.2",
   "dependencies": {
   }
 }
