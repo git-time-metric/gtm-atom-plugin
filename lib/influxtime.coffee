@@ -1,4 +1,7 @@
+statusBarTileView = null
+
 ConfigSchema = require('./configuration.coffee')
+StatusBarTileView = require './status-bar'
 
 {CompositeDisposable} = require 'atom'
 {BufferedProcess} = require 'atom'
@@ -48,8 +51,18 @@ module.exports = Influxtime =
 
     console.log("EdgeG.IO Time Plugin Active")
 
+  consumeStatusBar: (statusBar) ->
+    statusBarTileView = new StatusBarTileView()
+    statusBarTileView.init()
+    @statusBarTile = statusBar.addRightTile(item: statusBarTileView, priority: 300)
+    statusBarTileView.setTitle('EdgeG.IO Time Plugin Active')
+    statusBarTileView.setStatus()
+
   deactivate: ->
     @subscriptions.dispose()
+    @statusBarTile?.destroy()
+    statusBarTileView?.destroy()
+    statusBarTileView = null
 
   logTime: (force) ->
     ed = atom.workspace.getActiveTextEditor()
