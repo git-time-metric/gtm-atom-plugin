@@ -14,9 +14,7 @@ module.exports = Influxtime =
   lastFile: ""
   lastUpdate: new Date()
 
-  useInfluxtime: false
   useGTM: false
-  influxtimeLocation: ""
   gtmLocation: ""
 
   activate: (state) ->
@@ -33,17 +31,9 @@ module.exports = Influxtime =
     @subscriptions.add atom.workspace.onDidChangeActivePaneItem () =>
       @logTime(false)
 
-    atom.config.observe 'edgeg.io-atom-time-plugin.useInfluxtime', (value) =>
-      console.log("Config value changed: useInfluxtime: " + value)
-      @useInfluxtime = value
-
     atom.config.observe 'edgeg.io-atom-time-plugin.useGTM', (value) =>
       console.log("Config value changed: useGTM: " + value)
       @useGTM = value
-
-    atom.config.observe 'edgeg.io-atom-time-plugin.InfluxtimeLocation', (value) =>
-      console.log("Config value changed: InfluxtimeLocation: " + value)
-      @influxtimeLocation = value
 
     atom.config.observe 'edgeg.io-atom-time-plugin.GTMLocation', (value) =>
       console.log("Config value changed: GTMLocation: " + value)
@@ -82,18 +72,8 @@ module.exports = Influxtime =
 
   logEvent: (filename) ->
     if filename != ""
-      command = "/usr/local/bin/influxmetric"
-      if @useInfluxtime
-        @logInfluxEvent(filename)
-
       if @useGTM
         @logGTMEvent(filename)
-
-  logInfluxEvent: (filename) ->
-      command = @influxtimeLocation + "/influxmetric"
-      args = ["record", "file", filename, ">> ~/.influxmetric/influxtime-atom.log"]
-      stdout = (output) -> console.log(output)
-      process = new BufferedProcess({command, args, stdout})
 
   logGTMEvent: (filename) ->
       command = @gtmLocation + "/gtm"
