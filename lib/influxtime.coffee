@@ -31,21 +31,21 @@ module.exports = Influxtime =
     @subscriptions.add atom.workspace.onDidChangeActivePaneItem () =>
       @logTime(false)
 
-    atom.config.observe 'edgeg.io-atom-time-plugin.useGTM', (value) =>
+    atom.config.observe 'git-time-metric.useGTM', (value) =>
       console.log("Config value changed: useGTM: " + value)
       @useGTM = value
 
-    atom.config.observe 'edgeg.io-atom-time-plugin.GTMLocation', (value) =>
+    atom.config.observe 'git-time-metric.GTMLocation', (value) =>
       console.log("Config value changed: GTMLocation: " + value)
       @gtmLocation = value
 
-    console.log("EdgeG.IO Time Plugin Active")
+    console.log("GTM Plugin Active")
 
   consumeStatusBar: (statusBar) ->
     statusBarTileView = new StatusBarTileView()
     statusBarTileView.init()
     @statusBarTile = statusBar.addRightTile(item: statusBarTileView, priority: 300)
-    statusBarTileView.setTitle('EdgeG.IO Time Plugin Active')
+    statusBarTileView.setTitle('Git Time Metric Plugin Active')
     statusBarTileView.setStatus()
 
   deactivate: ->

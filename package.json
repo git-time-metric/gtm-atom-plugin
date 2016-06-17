@@ -1,5 +1,5 @@
 {
-  "name": "edgeg.io-atom-time-plugin",
+  "name": "git-time-metric",
   "author": {
     "name": "Brandon Grady"
   },
@@ -26,7 +26,7 @@
     }
   },
   "readmeFilename": "README.md",
-  "_id": "edgeg.io-atom-time-plugin@0.2.0",
+  "_id": "git-time-metric@0.2.0",
   "dependencies": {
   }
 }
