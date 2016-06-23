@@ -15,3 +15,7 @@ finder. A future release will present the user with a setting to set this.
 ## 0.3.0 - GTM Update
 * Updated Logo
 * Auto-find the GTM executable
+
+## 0.4.0 - Auto-configure
+* Once auto-detected, write value to configuration so it doesn't have to be
+  detected again.
