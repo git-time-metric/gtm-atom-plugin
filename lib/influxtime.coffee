@@ -54,6 +54,9 @@ module.exports = Influxtime =
       location = locator.findGTM()
       if !location || location == ""
         atom.notifications.addWarning("No GTM executable found. GTM will not function. Please configure.")
+      else
+        atom.notifications.addInfo("Auto-detected GTM (" + location + ") and set in your configuration.")
+        atom.config.set('git-time-metric.GTMLocation', location)
 
 
     console.log("GTM Plugin Active")
