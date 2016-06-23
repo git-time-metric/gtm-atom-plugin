@@ -9,4 +9,4 @@ module.exports =
       title: "Location of the GTM executable"
       description: "Configure the location of your GTM executable. Being on the PATH is not enough."
       type: "string"
-      default: "/usr/local/bin"
+      default: ""

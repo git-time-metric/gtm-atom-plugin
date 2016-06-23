@@ -1,10 +1,13 @@
 statusBarTileView = null
 
-ConfigSchema = require('./configuration.coffee')
-StatusBarTileView = require './status-bar'
+ConfigSchema = require('./configuration')
+StatusBarTileView = require('./status-bar')
+Locator = require('./locator')
 
 {CompositeDisposable} = require 'atom'
 {BufferedProcess} = require 'atom'
+path = require 'path'
+os = require 'os'
 
 module.exports = Influxtime =
   config: ConfigSchema.config
@@ -13,11 +16,16 @@ module.exports = Influxtime =
   subscriptions: null
   lastFile: ""
   lastUpdate: new Date()
+  warned: false
 
   useGTM: false
-  gtmLocation: ""
+  gtmLocation: ''
+  exe: 'gtm'
 
   activate: (state) ->
+    if os.platform() == 'win32'
+      @exe += '.exe'
+
     @subscriptions = new CompositeDisposable
 
     # Observe text editors. Any time a new one is opened, log it
@@ -37,7 +45,16 @@ module.exports = Influxtime =
 
     atom.config.observe 'git-time-metric.GTMLocation', (value) =>
       console.log("Config value changed: GTMLocation: " + value)
+      @warned = false
       @gtmLocation = value
+
+    if @gtmLocation == ""
+      console.log("No executable location set - attempting to detect")
+      locator = new Locator
+      location = locator.findGTM()
+      if !location || location == ""
+        atom.notifications.addWarning("No GTM executable found. GTM will not function. Please configure.")
+
 
     console.log("GTM Plugin Active")
 
@@ -76,7 +93,15 @@ module.exports = Influxtime =
         @logGTMEvent(filename)
 
   logGTMEvent: (filename) ->
-      command = @gtmLocation + "/gtm"
-      args = ["record", filename, ">> ~/.gtm-atom.log"]
-      stdout = (output) -> console.log(output)
-      process = new BufferedProcess({command, args, stdout})
+
+    process = new BufferedProcess
+      command: @gtmLocation + path.sep + @exe
+      args: ["record", filename, ">> ~/.gtm-atom.log"]
+      stdout: (output) -> console.log(output)
+
+    process.onWillThrowError (errorObject) =>
+      console.log("Error running GTM: " + errorObject.error)
+      errorObject.handle()
+      if !@warned
+        atom.notifications.addError("GTM Failed to run. Please check configuration.")
+        @warned = true
