@@ -14,7 +14,7 @@ class StatusBarTileView extends HTMLElement
 
     @icon = document.createElement('img')
     @icon.classList.add('inline-block')
-    @icon.setAttribute('src', __dirname + path.sep + 'AtomIcon.png')
+    @icon.setAttribute('src', __dirname + path.sep + 'GTMLogo-128.png')
     @icon.style.width = '1.4555em'
     @icon.style.height = '1.4555em'
     @icon.style.verticalAlign = 'middle'

@@ -8,3 +8,10 @@ path somewhere.
 ## 0.1.1 - Bug Fix
 * Fixed bug where _influxmetric_ command cannot be found when launched from the
 finder. A future release will present the user with a setting to set this.
+
+## 0.2.0 - GTM Alone
+* Updated to use GTM Alone. Deprecated influxtime.
+
+## 0.3.0 - GTM Update
+* Updated Logo
+* Auto-find the GTM executable
