@@ -4,12 +4,10 @@
     "name": "Brandon Grady"
   },
   "main": "./lib/influxtime",
-  "version": "0.0.0",
+  "version": "1.0.0",
   "description": "Collects time metric information for files worked on in GIT repositories.",
-  "keywords": [
-  ],
+  "keywords": [],
   "activationCommands": {},
-  "repository": "https://github.com/git-time-metric/gtm-atom-plugin",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/git-time-metric/gtm-atom-plugin"
@@ -27,6 +25,5 @@
   },
   "readmeFilename": "README.md",
   "_id": "git-time-metric@0.0.0",
-  "dependencies": {
-  }
+  "dependencies": {}
 }
