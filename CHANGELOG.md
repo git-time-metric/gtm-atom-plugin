@@ -19,3 +19,9 @@ finder. A future release will present the user with a setting to set this.
 ## 0.4.0 - Auto-configure
 * Once auto-detected, write value to configuration so it doesn't have to be
   detected again.
+
+## 1.0.0 - Released to Atom.io
+
+## 1.0.1 - Minor documentation updates
+* Added AUTHORS, Updated LICENSE, and changed README to remove non-existent
+  support e-mail address.

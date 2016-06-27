@@ -32,4 +32,5 @@ MIT: http://mattn.mit-license.org/2014
 
 # Support
 
-To get help, send e-mail to support@edgeg.io.
+To report a bug, please submit an issue on the
+[GitHub Page](https://github.com/git-time-metric/gtm-atom-plugin/issues)
