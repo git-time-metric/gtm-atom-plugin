@@ -4,15 +4,15 @@
     "name": "Brandon Grady"
   },
   "main": "./lib/influxtime",
-  "version": "0.4.0",
+  "version": "0.0.0",
   "description": "Collects time metric information for files worked on in GIT repositories.",
   "keywords": [
   ],
   "activationCommands": {},
-  "repository": "https://bitbucket.org/edgegio/edgeg.io-atom-time-plugin",
+  "repository": "https://github.com/git-time-metric/gtm-atom-plugin",
   "repository": {
     "type": "git",
-    "url": "git+https://bitbucket.org/edgegio/edgeg.io-atom-time-plugin"
+    "url": "git+https://github.com/git-time-metric/gtm-atom-plugin"
   },
   "license": "MIT",
   "engines": {
@@ -26,7 +26,7 @@
     }
   },
   "readmeFilename": "README.md",
-  "_id": "git-time-metric@0.4.0",
+  "_id": "git-time-metric@0.0.0",
   "dependencies": {
   }
 }
