@@ -17,6 +17,7 @@ module.exports = Influxtime =
   lastFile: ""
   lastUpdate: new Date()
   warned: false
+  statusBar: null
 
   useGTM: false
   gtmLocation: ''
@@ -42,6 +43,8 @@ module.exports = Influxtime =
     atom.config.observe 'git-time-metric.useGTM', (value) =>
       console.log("Config value changed: useGTM: " + value)
       @useGTM = value
+      if @statusBar
+        @statusBar.setStatus()
 
     atom.config.observe 'git-time-metric.GTMLocation', (value) =>
       console.log("Config value changed: GTMLocation: " + value)
@@ -67,6 +70,7 @@ module.exports = Influxtime =
     @statusBarTile = statusBar.addRightTile(item: statusBarTileView, priority: 300)
     statusBarTileView.setTitle('Git Time Metric Plugin Active')
     statusBarTileView.setStatus()
+    @statusBar = statusBarTileView
 
   deactivate: ->
     @subscriptions.dispose()
@@ -96,11 +100,11 @@ module.exports = Influxtime =
         @logGTMEvent(filename)
 
   logGTMEvent: (filename) ->
-
     process = new BufferedProcess
       command: @gtmLocation + path.sep + @exe
-      args: ["record", filename, ">> ~/.gtm-atom.log"]
-      stdout: (output) -> console.log(output)
+      args: ["record", "--status", filename]
+      stdout: (output) =>
+        @statusBar.setStatus(output)
 
     process.onWillThrowError (errorObject) =>
       console.log("Error running GTM: " + errorObject.error)
