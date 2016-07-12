@@ -11,12 +11,15 @@ os = require 'os'
 
 module.exports = Influxtime =
   config: ConfigSchema.config
+  GTMVersionString: ">= v1.0-beta.6"
 
   updateDuration: 30000
   subscriptions: null
   lastFile: ""
   lastUpdate: new Date()
   warned: false
+  useLegacy: false
+  statusBar: null
 
   useGTM: false
   gtmLocation: ''
@@ -42,11 +45,15 @@ module.exports = Influxtime =
     atom.config.observe 'git-time-metric.useGTM', (value) =>
       console.log("Config value changed: useGTM: " + value)
       @useGTM = value
+      if @statusBar
+        @statusBar.setStatus()
 
     atom.config.observe 'git-time-metric.GTMLocation', (value) =>
       console.log("Config value changed: GTMLocation: " + value)
       @warned = false
       @gtmLocation = value
+      @useLegacy = false
+      @checkGTMVersion(@GTMVersionString)
 
     if @gtmLocation == ""
       console.log("No executable location set - attempting to detect")
@@ -67,6 +74,7 @@ module.exports = Influxtime =
     @statusBarTile = statusBar.addRightTile(item: statusBarTileView, priority: 300)
     statusBarTileView.setTitle('Git Time Metric Plugin Active')
     statusBarTileView.setStatus()
+    @statusBar = statusBarTileView
 
   deactivate: ->
     @subscriptions.dispose()
@@ -96,11 +104,19 @@ module.exports = Influxtime =
         @logGTMEvent(filename)
 
   logGTMEvent: (filename) ->
+    args = []
+    if @useLegacy
+      args = ["record", filename]
+    else
+      args = ["record", "--status", filename]
 
     process = new BufferedProcess
       command: @gtmLocation + path.sep + @exe
-      args: ["record", filename, ">> ~/.gtm-atom.log"]
-      stdout: (output) -> console.log(output)
+      args: args
+      stdout: (output) =>
+        @statusBar.setStatus(output)
+      stderr: (output) ->
+        console.log("Error logging gtm event: " + output)
 
     process.onWillThrowError (errorObject) =>
       console.log("Error running GTM: " + errorObject.error)
@@ -108,3 +124,27 @@ module.exports = Influxtime =
       if !@warned
         atom.notifications.addError("GTM Failed to run. Please check configuration.")
         @warned = true
+
+  checkGTMVersion: (gtmVersionString) ->
+    if @gtmLocation != ""
+      console.log("Checking GTM Version")
+      process = new BufferedProcess
+        command: @gtmLocation + path.sep + @exe
+        args: ["verify", gtmVersionString]
+        stderr: (output) =>
+          @setLegacyMode()
+        stdout: (output) =>
+          if output != "true"
+            @setLegacyMode()
+
+      process.onWillThrowError (errorObject) =>
+        console.log("Error Checking GTM Location: " + errorObject.error)
+        errorObject.handle()
+
+  setLegacyMode: ->
+    console.log("Using legacy mode.")
+    @useLegacy = true
+    atom.notifications.addWarning("GTM Executable is out of date.\n\n" +
+      "The plug-in has rolled back to legacy behavior.  " +
+      "Please install the latest GTM version and restart Atom.\n\n" +
+      "See https://github.com/git-time-metric/gtm/blob/master/README.md")
