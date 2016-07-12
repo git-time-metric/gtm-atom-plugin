@@ -9,7 +9,7 @@ class StatusBarTileView extends HTMLElement
 
     @link = document.createElement('a')
     @link.classList.add('inline-block')
-    @link.href = 'https://github.com/git-time-metric'
+    @link.href = 'https://github.com/git-time-metric/gtm-atom-plugin'
     @appendChild @link
 
     @icon = document.createElement('img')
