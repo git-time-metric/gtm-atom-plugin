@@ -29,3 +29,6 @@ finder. A future release will present the user with a setting to set this.
 ## 1.1.0 - Put uncommitted time in the status bar.
 * Added to the right of the status icon
 * Check the version of the GTM executable
+
+## 1.1.1 - Made Windows work properly
+* Fixed bugs in detecting the Windows executable
