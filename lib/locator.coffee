@@ -11,10 +11,12 @@ class Locator
   constructor: ->
     if os.platform() == 'win32'
       console.log("Detected Windows. Adjusting logic...")
-      pf = process.env.ProgramFiles + '\\gtm\\bin'
-      pfx86 = process.env['ProgramFiles(x86)'] + '\\gtm\\bin'
+      pf = process.env.ProgramFiles + '\\gtm'
+      pfx86 = process.env['ProgramFiles(x86)'] + '\\gtm'
       @defaultPath = pf + path.delimiter + pfx86
       @exe += ".exe"
+      if !@envPath
+        @envPath = process.env.Path
 
   findGTM: ->
     pathsStr = @envPath + path.delimiter + @defaultPath
