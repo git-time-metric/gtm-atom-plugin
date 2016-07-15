@@ -32,3 +32,8 @@ finder. A future release will present the user with a setting to set this.
 
 ## 1.1.1 - Made Windows work properly
 * Fixed bugs in detecting the Windows executable
+
+## 1.1.2 - Windows bug Fix
+* Weird bug when opening a new file in an uninitialized project was
+  passing invalid arguments (or lack of arguments) to the underlying
+  gtm command, which was then shown in the status bar.
