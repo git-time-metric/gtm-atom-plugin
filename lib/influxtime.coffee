@@ -99,7 +99,7 @@ module.exports = Influxtime =
         @lastUpdate = now
 
   logEvent: (filename) ->
-    if filename != ""
+    if filename && filename != ""
       if @useGTM
         @logGTMEvent(filename)
 
