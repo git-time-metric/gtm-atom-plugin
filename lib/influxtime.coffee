@@ -114,7 +114,7 @@ module.exports = Influxtime =
       command: @gtmLocation + path.sep + @exe
       args: args
       stdout: (output) =>
-        @statusBar.setStatus(output)
+        @statusBar.setStatus(@formatStatus(output))
       stderr: (output) ->
         console.log("Error logging gtm event: " + output)
 
@@ -124,6 +124,14 @@ module.exports = Influxtime =
       if !@warned
         atom.notifications.addError("GTM Failed to run. Please check configuration.")
         @warned = true
+
+  formatStatus: (timeString) ->
+    re = /^(.*?)(\s*\ds)/
+    groups = re.exec(timeString)
+    if groups && groups.length > 0
+      return groups[1]
+    else
+      return timeString
 
   checkGTMVersion: (gtmVersionString) ->
     if @gtmLocation != ""
