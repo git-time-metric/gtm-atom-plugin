@@ -1,3 +1,7 @@
+## 1.1.3 - Strip off seconds on status bar
+* Removed the seconds portion of the time string to be more in line
+  with the other GTM plugins.
+  
 ## 1.1.2 - Windows bug Fix
 * Weird bug when opening a new file in an uninitialized project was
   passing invalid arguments (or lack of arguments) to the underlying
