@@ -4,7 +4,7 @@
     "name": "Brandon Grady"
   },
   "main": "./lib/influxtime",
-  "version": "1.1.3",
+  "version": "1.1.4",
   "description": "Collects time metric information for files worked on in GIT repositories.",
   "keywords": [],
   "activationCommands": {},
