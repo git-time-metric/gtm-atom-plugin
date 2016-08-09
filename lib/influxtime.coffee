@@ -11,7 +11,7 @@ os = require 'os'
 
 module.exports = Influxtime =
   config: ConfigSchema.config
-  GTMVersionString: ">= v1.0-beta.6"
+  GTMVersionString: ">= v1.0.0"
 
   updateDuration: 30000
   subscriptions: null
