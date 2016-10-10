@@ -1,3 +1,5 @@
+## 1.1.5 - Require gtm version 1.1.0
+
 ## 1.1.4 - Require gtm version 1.0.0
 
 ## 1.1.3 - Strip off seconds on status bar
