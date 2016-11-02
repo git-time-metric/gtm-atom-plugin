@@ -1,3 +1,7 @@
+## 1.1.6 - Require gtm version 1.2.0
+* Update README with new "reporting" features
+* Update README to be more consistent with other editor plugins
+
 ## 1.1.5 - Require gtm version 1.1.0
 
 ## 1.1.4 - Require gtm version 1.0.0
