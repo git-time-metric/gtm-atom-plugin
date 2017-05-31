@@ -1,3 +1,6 @@
+## 1.1.8 - Require gtm version 1.2.7
+* Update warning message to add the desired GTM version
+
 ## 1.1.7 - Require gtm version 1.2.1
 
 ## 1.1.6 - Require gtm version 1.2.0

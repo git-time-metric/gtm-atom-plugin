@@ -11,7 +11,8 @@ os = require 'os'
 
 module.exports = Influxtime =
   config: ConfigSchema.config
-  GTMVersionString: ">= v1.2.1"
+  GTMVersion: "v1.2.7"
+  GTMVersionString: ">= v1.2.7"
 
   updateDuration: 30000
   subscriptions: null
@@ -153,6 +154,7 @@ module.exports = Influxtime =
     console.log("Using legacy mode.")
     @useLegacy = true
     atom.notifications.addWarning("GTM Executable is out of date.\n\n" +
+      "The plug-in is optimized to be used with GTM version " + @GTMVersion + ". " +
       "The plug-in has rolled back to legacy behavior.  " +
       "Please install the latest GTM version and restart Atom.\n\n" +
       "See https://github.com/git-time-metric/gtm/blob/master/README.md")
